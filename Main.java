@@ -1,7 +1,18 @@
-import java.util.Deque;
+import static java.lang.Character.isLetter;
+import static java.lang.Character.isSpace;
+import static java.lang.Character.isDigit;
 
-public class Assignment1 {
+public class Assignemnt2 {
 
+	static int charClass;
+	static char[] lexeme = new char[100];
+	static char nextChar;
+	static int lexlen;
+	static int nextToken;
+	
+	// File *in_fp, *fopen();
+	
+	
 	private static final int EOF = 14;
 	private static final int NULL = 13;
 	private static final int RIGHT_PARENT = 21;
@@ -16,19 +27,6 @@ public class Assignment1 {
 	private static final int IDENT = 20;
 	private static final int INT_LIT = 0;
 
-
-
-	/* Function Declaration */
-	void addChar1() {
-	}
-	void getChar1() {
-	}
-	void getNonBlank1() {
-	}
-	int lex1() {
-		return 0;
-	}
-
 	
 
 
@@ -37,15 +35,18 @@ public class Assignment1 {
 
 	/* Open the input data file and process its contents */
 	Object in_fp;
-	if (("font.in", "r") == 0)
-	printf("ERROR - cannot open front.in \n");
-	else {
-	getChar1();
-	String nextToken;
-	do {
-	lex1();
-	} while (nextToken = EOF);
+  int lex1 = 1;
+	if (lex1 == 0)
+	  System.out.printf("ERROR - cannot open front.in \n");
+	
+  else {
+	  getChar1();
+	  int nextToken = 0;
+	  do {
+	    lex1();
+	  } while (nextToken != EOF);
 	}
+
 	}
 
 	private Object fopen(String string, String string2) {
@@ -95,120 +96,104 @@ public class Assignment1 {
 	}
 	/*****************************************************/
 
-	/* addChar - a function to add nextChar to lexeme */
-	void addChar() {
-	if (lex() <= 98) {
-	Object nextChar = null;
-	int[] lexeme = null;
+	/* addChar1 - a function to add nextChar to lexeme */
+	void addChar1() {
+	if (lex1() <= 98) {
+	char nextChar = 'a';    //=========================================== used 'a' for testign
+	char[] lexeme = new char[100];
 	int lexLen = 0;
-	lexeme[lexLen++] = (int) nextChar;
-	lexeme[lex()] = 0;
+	lexeme[lexLen++] = (char) nextChar;
+	lexeme[lex1()] = 0;
 	}
 	else
-	printf("Error - lexeme is too long \n");
+	System.out.printf("Error - lexeme is too long \n");
 	}
 
-	private void printf(String string) {
-		// TODO Auto-generated method stub
-		
-	}
+
 	/*****************************************************/
-	/* getChar - a function to get the next character of
+	/* getChar1 - a function to get the next character of
 	input and determine its character class */
-	void getChar() {
-	Object nextChar;
+	void getChar1() {
 	Object in_fp;
 	int charClass;
-	if ((getc(in_fp)) != EOF) {
-	if (isalpha(nextChar))
-	charClass = LETTER;
-	else if (isdigit(nextChar))
-	charClass = DIGIT;
-	else charClass = UNKNOWN;
+	if (nextChar != EOF) {
+
+    int testChar = (int)nextChar;
+
+	  if (isLetter(nextChar))
+	    charClass = LETTER;
+
+    
+	  
+    else if (isDigit(testChar))
+	    charClass = DIGIT;
+	  
+    else charClass = UNKNOWN;
 	}
 	else
-	charClass = EOF;
+	  charClass = EOF;
 	}
 
-	private boolean isdigit(Object nextChar) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	private Object getc(Object in_fp) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	private boolean isalpha(Object nextChar) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 	/*****************************************************/
-	/* getNonBlank - a function to call getChar until it
+	/* getNonBlank1 - a function to call getChar until it
 	returns a non-whitespace character */
-	void getNonBlank() {
+	void getNonBlank1() {
 	Object nextChar = null;
-	while (isspace(nextChar))
+	while (isSpace((char)nextChar))
 	getChar1();
 	}
 	
 
 	/* lex1 - a simple lexical analyzer for arithmetic
 	expressions */
-	private boolean isspace(Object nextChar) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	int lex() {
-	int lexLen = 0;
-	getNonBlank1();
-	switch (charClass) int nextToken;
-	Object lexeme;
-	{
+	
+	int lex1() {
+		int lexLen = 0;
+		getNonBlank1();
+		int nextToken = 0;
+		
+		switch (charClass)
+		{
+		
+		
+		
 
 	
-	/* Parse identifiers */
-	 LETTER:
-	addChar1();
-	getChar1();
-	int charClass;
-	while (charClass == LETTER || charClass == DIGIT) {
-	addChar1();
-	getChar1();
-	}
-	nextToken = IDENT;
-	break;
-
-	/* Parse integer literals */
-	int DIGIT;
-	addChar1();
-	getChar1();
-	while (charClass == DIGIT) {
-	addChar1();
-	getChar1();
-	}
-	nextToken = INT_LIT;
-	break;
-
-	/* Parentheses and operators */
-	 char nextChar;
-	UNKNOWN:
-	lookup(nextChar);
-	getChar1();
-	break;
-
-	/* EOF */
-	 EOF:
-	nextToken = EOF;
-	string lexeme(0) = 'E';
-	lexeme[1] = 'O';
-	lexeme[2] = 'F';
-	lexeme[3] = 0;
-	break;
-
-	} /* End of switch */
-	printf("Next token is: %d, Next lexeme is %s\n");
-	return nextToken;
+		/* Parse identifiers */
+		case LETTER:
+		addChar1();
+		getChar1();
+		int charClass1 = 0;
+		while (charClass == LETTER || charClass == DIGIT) {
+		addChar1();
+		getChar1();
+		}
+		nextToken = IDENT;
+		break;
+	
+		/* Parse integer literals */
+		case DIGIT:
+		addChar1();
+		getChar1();
+		while ((char)charClass == DIGIT) {
+		addChar1();
+		getChar1();
+		}
+		nextToken = INT_LIT;
+		break;
+	
+		/* Parentheses and operators */
+		case UNKNOWN:
+		lookup(nextChar);
+		getChar1();
+		break;
+	
+		} /* End of switch */
+		System.out.printf("Next token is: %d, Next lexeme is %s\n");
+		return nextToken;
 
 	} /* End of function lex */
-}
-
+	
+	
+} // end of Assignment1
